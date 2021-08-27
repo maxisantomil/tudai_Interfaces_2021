@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prueba</title>
+</head>
+
+<body>
+    <canvas id="canvas" width="900" height="600" style="border:#000 solid 1px;">
+    </canvas>
+
+</body>
+<script>
+    var ctx = document.getElementById("canvas").getContext("2d");
+    ctx.fillStyle = "#002550"; //color de fondo  
+    ctx.fillRect(250, 25, 150, 100); //dibuja un rectangulo los dos primeros valores corresponden a eje x e y
+    ctx.beginPath(); //indica que se va a comenzar a dibujar
+    ctx.arc(450, 110, 100, Math.PI * 1 / 2, Math.PI * 3 / 2); // arco a la trayectoria 
+    ctx.lineWidth = 15; //grosor de la linea
+    ctx.lineCap = 'round'; //square, butt son otros ejemplos. determina la forma final de la linea
+    ctx.strokeStyle = 'rgba(0,127,0,0.5)';
+    ctx.stroke();
+</script>
+
+</html>
