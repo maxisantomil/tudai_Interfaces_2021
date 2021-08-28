@@ -15,7 +15,8 @@
 </body>
 <script>
     var ctx = document.getElementById("canvas").getContext("2d");
-    ctx.fillStyle = "#002550"; //color de fondo  
+    ctx.fillStyle = "#002550"; //color de fondo
+    ctx.strokeRect(100, 100, 120, 120); //dibujo el contorno de una figura
     ctx.fillRect(250, 25, 150, 100); //dibuja un rectangulo los dos primeros valores corresponden a eje x e y
     ctx.beginPath(); //indica que se va a comenzar a dibujar
     ctx.arc(450, 110, 100, Math.PI * 1 / 2, Math.PI * 3 / 2); // arco a la trayectoria 
