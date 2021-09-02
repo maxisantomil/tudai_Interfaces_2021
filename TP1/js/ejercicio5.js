@@ -13,12 +13,22 @@ let a = 255;
 function drawRect(imageData, r, g, b, a) {
 
     for (let x = 0; x < width; x++) {
+        let r;
+        let g;
+        let b;
+        let a = 255;
+        if (x <= width / 2) {
+            let coeficiente = 255 / (width / 2);
+            r = coeficiente * x;
+            g = coeficiente * x;
+            b = 0;
+        } else {
+            let coeficiente = 255 / (width);
+            r = 255;
+            g = 255 - (coeficiente * x);
+            b = 0;
+        }
         for (let y = 0; y < height; y++) {
-            let coeficiente = 255 / height;
-            let r = coeficiente * y;
-            let g = coeficiente * y;
-            let b = coeficiente * y;
-            let a = 255;
             setPixel(imageData, x, y, r, g, b, a);
         }
     }
