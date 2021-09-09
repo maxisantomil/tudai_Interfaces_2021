@@ -9,6 +9,18 @@ let x = 0,
     color = 'black',
     grosor = 1; //variables globales
 
+    let image = new Image();
+    image.src="img/Quilmes470.jpg";
+    
+    image.onload = function (){
+        myDrawImageMethod(this);
+    }
+
+    function myDrawImageMethod(imagen){
+        ctx.drawImage(imagen, 10, 10);
+    }
+
+
 
 function definir_color(c) {
     color = c;
