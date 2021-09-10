@@ -3,58 +3,107 @@
 let canvas = document.getElementById("canvas");
 let ctx = canvas.getContext("2d");
 let rect = canvas.getBoundingClientRect(); //donde esta el canvas con respecto a la pantalla
-let width=500;
-let height=500;
+let width = 500;
+let height = 500;
 let x = 0,
     y = 0,
     dibujando = false,
     color = 'black',
     grosor = 1; //variables globales
 
-    let image = new Image();
-    image.src="img/Quilmes470.jpg";
-    
-    image.onload = function (){
-        myDrawImageMethod(this);
-        
-    }
+let image = new Image();
+image.src = "img/sasuke.jpg";
 
-    function myDrawImageMethod(imagen){
-        ctx.drawImage(imagen, 0, 0);
-        gris(imagen);
-    }
+image.onload = function() {
+    myDrawImageMethod(this);
+}
 
-    function gris(imageData){
-       //let imageData = ctx.getImageData(0,0,width,height);
-       function drawRect(imageData,r,g,b,a){
-           for(let x=0;x<width;x++){
-               for(let y=0;y<height;y++){
-                   setPixel(imageData,x,y,r,g,b,a);
-               }
-           }
-       }
-    }
+function myDrawImageMethod(imagen) {
+    ctx.drawImage(imagen, 0, 0, width, height);
+}
 
-    function setPixel(imageData,r,g,b,a){
-        let i=(x+yimageData.width*4);
+function Grises() {
+    let data = ctx.getImageData(0, 0, width, height);
+    for (let index = 0; index < data.data.length; index++) {
+        let rojo = data.data[index * 4];
+        let verde = data.data[index * 4 + 1];
+        let azul = data.data[index * 4 + 2];
+        let valorFinal = (rojo + verde + azul) / 3;
 
-        r=imageData.data[index];
-        g=imageData.data[index+1];
-        b=imageData.data[index+2];
-        a=imageData.data[index+3];
-
-        let promedio = Math.round((r+g+b)/3);
-
-        imageData.data[index]=promedio;
-        imageData.data[index+1]=promedio;
-        imageData.data[index+2]=promedio;
-
+        data.data[index * 4] = valorFinal;
+        data.data[index * 4 + 1] = valorFinal;
+        data.data[index * 4 + 2] = valorFinal;
 
     }
+    ctx.putImageData(data, 0, 0);
+}
 
+function Binario() {
+    let data = ctx.getImageData(0, 0, width, height);
+    for (let index = 0; index < data.data.length; index++) {
+        let rojo = data.data[index * 4];
+        let verde = data.data[index * 4 + 1];
+        let azul = data.data[index * 4 + 2];
+        let promedioFijo = 255 / 3;
+        let promediorgb = (rojo + verde + azul) / 5;
+        // ya que el promedio de los colores mas oscuros es menor
+        // dividiendo por un numero mas alto, 
+        //se aumenta el umbral de colores menos claros para que se destaquen en negro.
+        if (promediorgb < promedioFijo) {
+            data.data[index * 4] = 0;
+            data.data[index * 4 + 1] = 0;
+            data.data[index * 4 + 2] = 0;
+        } else {
+            data.data[index * 4] = 255;
+            data.data[index * 4 + 1] = 255;
+            data.data[index * 4 + 2] = 255;
+        }
+    }
+    ctx.putImageData(data, 0, 0);
+}
 
+function Negativo() {
+    let data = ctx.getImageData(0, 0, width, height);
+    for (let index = 0; index < data.data.length; index++) {
+        let rojo = data.data[index * 4];
+        let verde = data.data[index * 4 + 1];
+        let azul = data.data[index * 4 + 2];
 
+        data.data[index * 4] = 255 - rojo;
+        data.data[index * 4 + 1] = 255 - verde;
+        data.data[index * 4 + 2] = 255 - azul;
+    }
+    ctx.putImageData(data, 0, 0);
+}
 
+function Sepia() {
+    let data = ctx.getImageData(0, 0, width, height);
+    for (let index = 0; index < data.data.length; index++) {
+        let rojo = data.data[index * 4];
+        let verde = data.data[index * 4 + 1];
+        let azul = data.data[index * 4 + 2];
+
+        let sr = (rojo * 0.393) + (verde * 0.769) + (azul * 0.189);
+        if (sr > 255)
+            sr = 255;
+        let sv = (rojo * 0.349) + (verde * 0.686) + (azul * 0.168);
+        if (sv > 255)
+            sv = 255;
+        let sa = (rojo * 0.272) + (verde * 0.534) + (azul * 0.131);
+        if (sa > 255)
+            sa = 255;
+
+        data.data[index * 4] = sr;
+        data.data[index * 4 + 1] = sv;
+        data.data[index * 4 + 2] = sa;
+    }
+    ctx.putImageData(data, 0, 0);
+}
+
+function Brillo() {
+
+}
+// PAINT LAPIZ Y GOMA DE BORRAR
 function definir_color(c) {
     color = c;
     grosor = 1;
