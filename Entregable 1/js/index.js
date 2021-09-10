@@ -12,6 +12,7 @@ let x = 0,
 
 function definir_color(c) {
     color = c;
+    grosor = 1;
 }
 // cuando se hace click por primera vez dentro del canvas
 canvas.addEventListener('mousedown', function(e) {
@@ -45,4 +46,9 @@ function dibujar(x1, y1, x2, y2) {
     ctx.lineTo(x2, y2);
     ctx.stroke();
     ctx.closePath();
+}
+
+function setBorrado() {
+    color = "#FFFFFF";
+    grosor = 20;
 }
