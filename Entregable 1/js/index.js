@@ -3,6 +3,8 @@
 let canvas = document.getElementById("canvas");
 let ctx = canvas.getContext("2d");
 let rect = canvas.getBoundingClientRect(); //donde esta el canvas con respecto a la pantalla
+let width=500;
+let height=500;
 let x = 0,
     y = 0,
     dibujando = false,
@@ -14,11 +16,42 @@ let x = 0,
     
     image.onload = function (){
         myDrawImageMethod(this);
+        
     }
 
     function myDrawImageMethod(imagen){
-        ctx.drawImage(imagen, 10, 10);
+        ctx.drawImage(imagen, 0, 0);
+        gris(imagen);
     }
+
+    function gris(imageData){
+       //let imageData = ctx.getImageData(0,0,width,height);
+       function drawRect(imageData,r,g,b,a){
+           for(let x=0;x<width;x++){
+               for(let y=0;y<height;y++){
+                   setPixel(imageData,x,y,r,g,b,a);
+               }
+           }
+       }
+    }
+
+    function setPixel(imageData,r,g,b,a){
+        let i=(x+yimageData.width*4);
+
+        r=imageData.data[index];
+        g=imageData.data[index+1];
+        b=imageData.data[index+2];
+        a=imageData.data[index+3];
+
+        let promedio = Math.round((r+g+b)/3);
+
+        imageData.data[index]=promedio;
+        imageData.data[index+1]=promedio;
+        imageData.data[index+2]=promedio;
+
+
+    }
+
 
 
 
