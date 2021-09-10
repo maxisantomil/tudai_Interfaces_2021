@@ -24,7 +24,7 @@ let x = 0,
         gris(imagen);
     }
 
-    function gris(imageData){
+    function binario(imageData){
        //let imageData = ctx.getImageData(0,0,width,height);
        function drawRect(imageData,r,g,b,a){
            for(let x=0;x<width;x++){
