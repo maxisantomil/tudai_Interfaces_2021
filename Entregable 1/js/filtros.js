@@ -101,8 +101,23 @@ function Sepia() {
 }
 
 function Brillo() {
+    let data = ctx.getImageData(0, 0, width, height);
+    for (let index = 0; index < data.data.length; index++) {
+        let rojo = data.data[index * 4];
+        let verde = data.data[index * 4 + 1];
+        let azul = data.data[index * 4 + 2];
 
+        rojo = rojo + 70;
+        verde = verde + 70;
+        azul = azul + 70;
+
+        if (rojo > 255) data.data[index * 4] = 255;
+        if (verde > 255) data.data[index * 4 + 1] = 255;
+        if (azul > 255) data.data[index * 4 + 2] = 255;
+    }
+    ctx.putImageData(data, 0, 0);
 }
+
 // PAINT LAPIZ Y GOMA DE BORRAR
 function definir_color(c) {
     color = c;
