@@ -12,7 +12,7 @@ let x = 0,
     grosor = 1; //variables globales
 
 let image = new Image();
-image.src = "img/sasuke.jpg";
+image.src = "img/ciudad.jpg";
 
 image.onload = function() {
     myDrawImageMethod(this);
@@ -107,13 +107,13 @@ function Brillo() {
         let verde = data.data[index * 4 + 1];
         let azul = data.data[index * 4 + 2];
 
-        rojo = rojo + 70;
-        verde = verde + 70;
-        azul = azul + 70;
+        rojo = rojo + 30;
+        verde = verde + 30;
+        azul = azul + 30;
 
-        if (rojo > 255) data.data[index * 4] = 255;
-        if (verde > 255) data.data[index * 4 + 1] = 255;
-        if (azul > 255) data.data[index * 4 + 2] = 255;
+        data.data[index * 4] = rojo;
+        data.data[index * 4 + 1] = verde;
+        data.data[index * 4 + 2] = azul;
     }
     ctx.putImageData(data, 0, 0);
 }
