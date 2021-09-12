@@ -100,6 +100,27 @@ function Sepia() {
     ctx.putImageData(data, 0, 0);
 }
 
+function Saturacion(){
+
+    let data = ctx.getImageData(0, 0, width, height);
+    let contrast = 150; // Default value
+ 
+    let factor = ( 259 * ( contrast + 255 ) ) / ( 255 * ( 259 - contrast ) );
+ 
+    for (let index = 0; index < data.data.length; index++) {
+        let rojo = data.data[index * 4];
+        let verde = data.data[index * 4 + 1];
+        let azul = data.data[index * 4 + 2];
+ 
+        data.data[ index * 4 ] = factor * ( rojo - 128 ) + 128;
+        data.data[ index * 4 + 1 ] = factor * ( verde - 128 ) + 128;
+        data.data[ index * 4 + 2 ] = factor * ( azul - 128 ) + 128;
+    }
+ 
+    ctx.putImageData(data, 0, 0 );
+}
+
+
 function Blur(){
     let data = ctx.getImageData(0, 0, width, height);
     for (let index = 0; index < data.data.length; index++) {
@@ -126,6 +147,7 @@ function Blur(){
         data.data[index * 4 + 1] = promg;
         data.data[index * 4 + 2] = promb;
     }
+        console.log(data.data.length);
         ctx.putImageData(data, 0, 0);
 }
 
