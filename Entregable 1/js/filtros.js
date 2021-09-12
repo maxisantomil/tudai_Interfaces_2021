@@ -12,7 +12,7 @@ let x = 0,
     grosor = 1; //variables globales
 
 let image = new Image();
-image.src = "img/sasuke.jpg";
+image.src = "img/ciudad.jpg";
 
 image.onload = function() {
     myDrawImageMethod(this);
@@ -130,8 +130,23 @@ function Blur(){
 }
 
 function Brillo() {
+    let data = ctx.getImageData(0, 0, width, height);
+    for (let index = 0; index < data.data.length; index++) {
+        let rojo = data.data[index * 4];
+        let verde = data.data[index * 4 + 1];
+        let azul = data.data[index * 4 + 2];
 
+        rojo = rojo + 30;
+        verde = verde + 30;
+        azul = azul + 30;
+
+        data.data[index * 4] = rojo;
+        data.data[index * 4 + 1] = verde;
+        data.data[index * 4 + 2] = azul;
+    }
+    ctx.putImageData(data, 0, 0);
 }
+
 // PAINT LAPIZ Y GOMA DE BORRAR
 function definir_color(c) {
     color = c;
