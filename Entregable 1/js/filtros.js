@@ -12,15 +12,32 @@ let x = 0,
     grosor = 1; //variables globales
 
 let image = new Image();
-image.src = "img/ciudad.jpg";
+//image.src = "img/ciudad.jpg";
 
-image.onload = function() {
-    myDrawImageMethod(this);
-}
+//image.onload = function() {
+//    myDrawImageMethod(this);
+//}
+
+let input=document.getElementById("myFile"); //se carga imagen que se quiere desde ordenador de usuario
+input.addEventListener('change',function (event){
+    let f = event.target.files[0];
+    let fr = new FileReader();
+
+    fr.onload = function(ev2){
+        image.src=ev2.target.result;
+        image.onload = function() {
+           myDrawImageMethod(this);
+        }
+     }
+     fr.readAsDataURL(f);
+});
+
+
 
 function myDrawImageMethod(imagen) {
     ctx.drawImage(imagen, 0, 0, width, height);
 }
+
 
 function Grises() {
     let data = ctx.getImageData(0, 0, width, height);
