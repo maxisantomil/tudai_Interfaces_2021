@@ -3,8 +3,8 @@
 let canvas = document.getElementById("canvas");
 let ctx = canvas.getContext("2d");
 let rect = canvas.getBoundingClientRect(); //donde esta el canvas con respecto a la pantalla
-let width = 500;
-let height = 500;
+let width = canvas.width;
+let height = canvas.height;
 let x = 0,
     y = 0,
     dibujando = false,
@@ -26,21 +26,22 @@ input.addEventListener('change', function(event) {
     fr.onload = function(ev2) {
         image.src = ev2.target.result;
         image.onload = function() {
-            redimensionarCanvas();
             myDrawImageMethod(this);
         }
     }
     fr.readAsDataURL(f);
 });
 
-function redimensionarCanvas() {
-    if (canvas.height < image.height) canvas.height = image.height
-    if (canvas.width < image.width) canvas.width = image.width
-
-}
-
 function myDrawImageMethod(imagen) {
-    ctx.drawImage(imagen, 0, 0, image.width, image.height);
+    var canvas = ctx.canvas;
+    var hRatio = canvas.width / imagen.width;
+    var vRatio = canvas.height / imagen.height;
+    var ratio = Math.min(hRatio, vRatio);
+    var centerShift_x = (canvas.width - imagen.width * ratio) / 2;
+    var centerShift_y = (canvas.height - imagen.height * ratio) / 2;
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.drawImage(imagen, 0, 0, imagen.width, imagen.height,
+        centerShift_x, centerShift_y, imagen.width * ratio, imagen.height * ratio);
 }
 
 
@@ -248,7 +249,11 @@ document.getElementById('descargar').onclick = function() {
         link.href = canvas.toDataURL("image/png"); //usa la imagen del canvas
     } else { //si el usuario le dio aceptar y puso un nombre al archivo
         link.download = filename;
-        link.href = canvas.toDataURL("image/bmp");
+        link.href = canvas.toDataURL("image/png");
     }
     link.click();
+}
+
+document.getElementById('reset').onclick = function() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
 }
