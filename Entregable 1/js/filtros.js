@@ -46,7 +46,7 @@ function myDrawImageMethod(imagen) {
 //Se obtiene un promedio, se suman los componentes RGB y se divide por 3. 
 // Se llega a un valor final el cual se le asigna a todos el mismo
 function Grises() {
-    let data = ctx.getImageData(0, 0, image.width, image.height);
+    let data = ctx.getImageData(0, 0, width, height);
     for (let index = 0; index < data.data.length; index++) {
         let rojo = data.data[index * 4];
         let verde = data.data[index * 4 + 1];
@@ -63,7 +63,7 @@ function Grises() {
 
 // FILTRO BINARIO 
 function Binario() {
-    let data = ctx.getImageData(0, 0, image.width, image.height);
+    let data = ctx.getImageData(0, 0, width, height);
     for (let index = 0; index < data.data.length; index++) {
         let rojo = data.data[index * 4];
         let verde = data.data[index * 4 + 1];
@@ -89,7 +89,7 @@ function Binario() {
 // FILTRO NEGATIVO
 // se obtiene el color inverso si se le resta a 255 el valor original de r g b
 function Negativo() {
-    let data = ctx.getImageData(0, 0, image.width, image.height);
+    let data = ctx.getImageData(0, 0, width, height);
     for (let index = 0; index < data.data.length; index++) {
         let rojo = data.data[index * 4];
         let verde = data.data[index * 4 + 1];
@@ -103,7 +103,7 @@ function Negativo() {
 }
 
 function Sepia() {
-    let data = ctx.getImageData(0, 0, image.width, image.height);
+    let data = ctx.getImageData(0, 0, width, height);
     for (let index = 0; index < data.data.length; index++) {
         let rojo = data.data[index * 4];
         let verde = data.data[index * 4 + 1];
@@ -128,7 +128,7 @@ function Sepia() {
 
 function Saturacion() {
 
-    let data = ctx.getImageData(0, 0, image.width, image.height);
+    let data = ctx.getImageData(0, 0, width, height);
     let contrast = 150; // Default value
 
     let factor = (259 * (contrast + 255)) / (255 * (259 - contrast));
@@ -163,12 +163,11 @@ function Blur() {
             data.data[index * 4 + 2] = promb;
         }
     }
-    console.log(data);
     ctx.putImageData(data, 0, 0);
 }
 
 function Brillo() {
-    let data = ctx.getImageData(0, 0, image.width, image.height);
+    let data = ctx.getImageData(0, 0, width, height);
     for (let index = 0; index < data.data.length; index++) {
         let rojo = data.data[index * 4];
         let verde = data.data[index * 4 + 1];
@@ -255,5 +254,5 @@ document.getElementById('descargar').onclick = function() {
 }
 
 document.getElementById('reset').onclick = function() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.clearRect(0, 0, width, height);
 }
