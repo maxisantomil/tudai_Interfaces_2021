@@ -11,6 +11,7 @@ let x = 0,
     color = 'black',
     grosor = 2; //variables globales
 
+
 let image = new Image();
 
 let input = document.getElementById("myFile"); //se carga imagen que se quiere desde ordenador de usuario
@@ -50,6 +51,9 @@ function myDrawImageMethod(imagen) {
 }
 
 
+// FILTRO GRISES 
+//Se obtiene un promedio, se suman los componentes RGB y se divide por 3. 
+// Se llega a un valor final el cual se le asigna a todos el mismo
 function Grises() {
     let data = ctx.getImageData(0, 0, image.width, image.height);
     for (let index = 0; index < data.data.length; index++) {
@@ -66,6 +70,7 @@ function Grises() {
     ctx.putImageData(data, 0, 0);
 }
 
+// FILTRO BINARIO 
 function Binario() {
     let data = ctx.getImageData(0, 0, image.width, image.height);
     for (let index = 0; index < data.data.length; index++) {
@@ -90,6 +95,8 @@ function Binario() {
     ctx.putImageData(data, 0, 0);
 }
 
+// FILTRO NEGATIVO
+// se obtiene el color inverso si se le resta a 255 el valor original de r g b
 function Negativo() {
     let data = ctx.getImageData(0, 0, image.width, image.height);
     for (let index = 0; index < data.data.length; index++) {
