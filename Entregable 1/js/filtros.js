@@ -9,14 +9,9 @@ let x = 0,
     y = 0,
     dibujando = false,
     color = 'black',
-    grosor = 1; //variables globales
+    grosor = 2; //variables globales
 
 let image = new Image();
-//image.src = "img/ciudad.jpg";
-
-//image.onload = function() {
-//    myDrawImageMethod(this);
-//}
 
 let input = document.getElementById("myFile"); //se carga imagen que se quiere desde ordenador de usuario
 input.addEventListener('change', function(event) {
@@ -32,12 +27,12 @@ input.addEventListener('change', function(event) {
     fr.readAsDataURL(f);
 });
 
-function VolverImgBase(event){
+function VolverImgBase(event) {
     let fr = new FileReader();
     image.onload = function() {
         myDrawImageMethod(this);
-     }
-  fr.readAsDataURL(image.src);
+    }
+    fr.readAsDataURL(image.src);
 }
 
 
@@ -154,36 +149,36 @@ function Saturacion() {
 }
 
 
-function Blur(){
+function Blur() {
     let data = ctx.getImageData(0, 0, width, height);
-    for(let i=0;i<3;i++){
+    for (let i = 0; i < 3; i++) {
         for (let index = 0; index < data.data.length; index++) {
             let rojo = data.data[index * 4];
             let verde = data.data[index * 4 + 1];
             let azul = data.data[index * 4 + 2];
 
-           /* if(data.data[index*4-4].isEmpty()){
-                let promr = (data.data[index*4]+data.data[index*4+4])/2;
-                let promg = (data.data[index*4+1]+data.data[index*4+1+4])/2;
-                let promb = (data.data[index*4+2]+data.data[index*4+2+4])/2;
-            }
-            if(data.data[index*4+4].isEmpty()){
-                let promr = (data.data[index*4]+data.data[index*4-4])/2;
-                let promg = (data.data[index*4+1]+data.data[index*4+1-4])/2;
-                let promb = (data.data[index*4+2]+data.data[index*4+2-4])/2;
-            }
-            else{*/
-                let promr = (data.data[index*4]+data.data[index*4-4]+data.data[index*4+4])/3;
-                let promg = (data.data[index*4+1]+data.data[index*4+1-4]+data.data[index*4+1+4])/3;
-                let promb = (data.data[index*4+2]+data.data[index*4+2-4]+data.data[index*4+2+4])/3;
+            /* if(data.data[index*4-4].isEmpty()){
+                 let promr = (data.data[index*4]+data.data[index*4+4])/2;
+                 let promg = (data.data[index*4+1]+data.data[index*4+1+4])/2;
+                 let promb = (data.data[index*4+2]+data.data[index*4+2+4])/2;
+             }
+             if(data.data[index*4+4].isEmpty()){
+                 let promr = (data.data[index*4]+data.data[index*4-4])/2;
+                 let promg = (data.data[index*4+1]+data.data[index*4+1-4])/2;
+                 let promb = (data.data[index*4+2]+data.data[index*4+2-4])/2;
+             }
+             else{*/
+            let promr = (data.data[index * 4] + data.data[index * 4 - 4] + data.data[index * 4 + 4]) / 3;
+            let promg = (data.data[index * 4 + 1] + data.data[index * 4 + 1 - 4] + data.data[index * 4 + 1 + 4]) / 3;
+            let promb = (data.data[index * 4 + 2] + data.data[index * 4 + 2 - 4] + data.data[index * 4 + 2 + 4]) / 3;
             //}
             data.data[index * 4] = promr;
             data.data[index * 4 + 1] = promg;
             data.data[index * 4 + 2] = promb;
         }
     }
-        console.log(data);
-        ctx.putImageData(data, 0, 0);
+    console.log(data);
+    ctx.putImageData(data, 0, 0);
 }
 
 function Brillo() {
@@ -204,11 +199,15 @@ function Brillo() {
     ctx.putImageData(data, 0, 0);
 }
 
-// PAINT LAPIZ Y GOMA DE BORRAR
+/////////////////////////////////////////////////////////////////////////
+//////////// PAINT LAPIZ Y GOMA DE BORRAR //////////////////////////////
+///////////////////////////////////////////////////////////////////////
+
 function definir_color(c) {
     color = c;
     grosor = 2;
 }
+
 // cuando se hace click por primera vez dentro del canvas
 canvas.addEventListener('mousedown', function(e) {
     x = e.clientX - rect.left;
@@ -216,6 +215,7 @@ canvas.addEventListener('mousedown', function(e) {
     dibujando = true;
 });
 
+// se dibuja desde la posicion hasta donde se lleva el mouse , despues se setea la x e y 
 canvas.addEventListener('mousemove', function(e) {
     if (dibujando === true) {
         dibujar(x, y, e.clientX - rect.left, e.clientY - rect.top);
@@ -244,6 +244,7 @@ function dibujar(x1, y1, x2, y2) {
     ctx.closePath();
 }
 
+// se setea el color del lapiz a blanco y se ajusta el grosor para borrar mas comodo
 function setBorrado() {
     color = "#FFFFFF";
     grosor = 20;
