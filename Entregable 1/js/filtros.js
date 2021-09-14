@@ -195,7 +195,7 @@ function Brillo() {
 // PAINT LAPIZ Y GOMA DE BORRAR
 function definir_color(c) {
     color = c;
-    grosor = 1;
+    grosor = 2;
 }
 // cuando se hace click por primera vez dentro del canvas
 canvas.addEventListener('mousedown', function(e) {
@@ -223,6 +223,7 @@ canvas.addEventListener('mouseup', function(e) {
 
 function dibujar(x1, y1, x2, y2) {
     ctx.beginPath();
+    ctx.lineCap = 'round';
     ctx.strokeStyle = color;
     ctx.lineWidth = grosor;
     ctx.moveTo(x1, y1);
