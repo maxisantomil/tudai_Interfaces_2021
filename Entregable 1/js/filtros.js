@@ -32,6 +32,16 @@ input.addEventListener('change', function(event) {
     fr.readAsDataURL(f);
 });
 
+function VolverImgBase(event){
+    let fr = new FileReader();
+    image.onload = function() {
+        myDrawImageMethod(this);
+     }
+  fr.readAsDataURL(image.src);
+}
+
+
+
 function myDrawImageMethod(imagen) {
     var canvas = ctx.canvas;
     var hRatio = canvas.width / imagen.width;
@@ -144,34 +154,36 @@ function Saturacion() {
 }
 
 
-function Blur() {
-    let data = ctx.getImageData(0, 0, image.width, image.height);
-    for (let index = 0; index < data.data.length; index++) {
-        let rojo = data.data[index * 4];
-        let verde = data.data[index * 4 + 1];
-        let azul = data.data[index * 4 + 2];
+function Blur(){
+    let data = ctx.getImageData(0, 0, width, height);
+    for(let i=0;i<3;i++){
+        for (let index = 0; index < data.data.length; index++) {
+            let rojo = data.data[index * 4];
+            let verde = data.data[index * 4 + 1];
+            let azul = data.data[index * 4 + 2];
 
-        /* if(data.data[index*4-4].isEmpty()){
-             let promr = (data.data[index*4]+data.data[index*4+4])/2;
-             let promg = (data.data[index*4+1]+data.data[index*4+1+4])/2;
-             let promb = (data.data[index*4+2]+data.data[index*4+2+4])/2;
-         }
-         if(data.data[index*4+4].isEmpty()){
-             let promr = (data.data[index*4]+data.data[index*4-4])/2;
-             let promg = (data.data[index*4+1]+data.data[index*4+1-4])/2;
-             let promb = (data.data[index*4+2]+data.data[index*4+2-4])/2;
-         }
-         else{*/
-        let promr = (data.data[index * 4] + data.data[index * 4 - 4] + data.data[index * 4 + 4]) / 3;
-        let promg = (data.data[index * 4 + 1] + data.data[index * 4 + 1 - 4] + data.data[index * 4 + 1 + 4]) / 3;
-        let promb = (data.data[index * 4 + 2] + data.data[index * 4 + 2 - 4] + data.data[index * 4 + 2 + 4]) / 3;
-        //}
-        data.data[index * 4] = promr;
-        data.data[index * 4 + 1] = promg;
-        data.data[index * 4 + 2] = promb;
+           /* if(data.data[index*4-4].isEmpty()){
+                let promr = (data.data[index*4]+data.data[index*4+4])/2;
+                let promg = (data.data[index*4+1]+data.data[index*4+1+4])/2;
+                let promb = (data.data[index*4+2]+data.data[index*4+2+4])/2;
+            }
+            if(data.data[index*4+4].isEmpty()){
+                let promr = (data.data[index*4]+data.data[index*4-4])/2;
+                let promg = (data.data[index*4+1]+data.data[index*4+1-4])/2;
+                let promb = (data.data[index*4+2]+data.data[index*4+2-4])/2;
+            }
+            else{*/
+                let promr = (data.data[index*4]+data.data[index*4-4]+data.data[index*4+4])/3;
+                let promg = (data.data[index*4+1]+data.data[index*4+1-4]+data.data[index*4+1+4])/3;
+                let promb = (data.data[index*4+2]+data.data[index*4+2-4]+data.data[index*4+2+4])/3;
+            //}
+            data.data[index * 4] = promr;
+            data.data[index * 4 + 1] = promg;
+            data.data[index * 4 + 2] = promb;
+        }
     }
-    console.log(data.data.length);
-    ctx.putImageData(data, 0, 0);
+        console.log(data);
+        ctx.putImageData(data, 0, 0);
 }
 
 function Brillo() {
