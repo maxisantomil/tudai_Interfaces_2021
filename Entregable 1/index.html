@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+<link rel="stylesheet" href="css/style.css">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Interfaces</title>
+</head>
+<nav class="navbar navbar-expand-lg navbar-warning bg-warning">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">PAINT 2021<img src="img/main.png" width="40" height="40 " alt=""></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <button class="btn btn-outline-primary"><i><input class="pen_color" type="color" id="color" onclick="definir_color(this.value)"></i></button>
+                </li>
+                <li class="nav-item">
+                    <i><button class="btn btn-outline-danger"><img src="img/Eraser_36315.png" width="22" height="22" alt="eraser" onclick="setBorrado()"></button></i>
+                </li>
+                <li class="nav-item">
+                    <form action="#" onsubmit="return false">
+                        <input class="btn btn-outline-primary" type="file" id="myFile" name="filename">
+                        <!--<button class="btn btn-primary" onclick="loadImage()">Cargar Imagen</button>-->
+                    </form>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<body>
+    <hr>
+    <div class="row g-0">
+        <div class="col-10 location_canvas"> <canvas id="canvas" width="500" height="500" ;></canvas></div>
+        <div class="col-2">
+            <div class="btn-group-vertical menu_filtros">
+                <input class="btn btn-outline-primary" type="button" onclick="Grises()" value="Grises">
+                <input class="btn btn-outline-primary" type="button" onclick="Binario()" value="Binario">
+                <input class="btn btn-outline-primary" type="button" onclick="Negativo()" value="Negativo">
+                <input class="btn btn-outline-primary" type="button" onclick="Sepia()" value="Sepia">
+                <input class="btn btn-outline-primary" type="button" onclick="Blur()" value="Blur">
+                <input class="btn btn-outline-primary" type="button" onclick="Brillo()" value="Brillo">
+                <input class="btn btn-outline-primary" type="button" onclick="Saturacion()" value="Saturacion">
+                <input class="btn btn-outline-primary" type="button" id="descargar" value="Guardar imagen">
+            </div>
+        </div>
+    </div>
+</body>
+<script src="js/filtros.js" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+
+</html>
