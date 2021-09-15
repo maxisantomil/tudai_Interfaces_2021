@@ -252,7 +252,3 @@ document.getElementById('descargar').onclick = function() {
     }
     link.click();
 }
-
-document.getElementById('reset').onclick = function() {
-    ctx.clearRect(0, 0, width, height);
-}
