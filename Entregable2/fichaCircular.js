@@ -5,26 +5,27 @@ class fichaCircular extends Ficha {
         this.radius = 20;
     }
 
-    draw() {
+    draw(image) {
         super.draw();
         this.context.beginPath();
+        this.setFill(image);
         this.context.arc(this.posX, this.posY, this.radius, 0, 2 * Math.PI);
-        let image1 = new Image(); //iniciar ruta
-        image1.src = 'img/poker.png'; //nuevo objeto imagen
-        image1.onload = () => { //la imagen debe cargarse
-            let relleno = this.context.createPattern(image1, "repeat"); //método createPattern
-            this.context.fillStyle = relleno; //imagen como relleno
-            this.context.fill();
-        }
+        this.context.stroke();
         this.context.fill();
-        this.context.closePath();
     }
 
     getRadius() {
         return this.radius;
     }
 
-    fillImage() {
-
+    isInside(x, y) {
+        return Math.sqrt((x - this.x) * (x - this.x) + (y - this.y) * (y - this.y)) < this.r;
+    }
+    setFill(image) {
+        let image1 = new Image(); //iniciar ruta
+        image1.src = image; //nuevo objeto imagen
+        image1.onload = () => {
+            this.context.fillStyle = this.context.createPattern(image1, "repeat"); //imagen como relleno
+        }
     }
 }
