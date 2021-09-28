@@ -5,10 +5,9 @@ class fichaCircular extends Ficha {
         this.radius = 20;
     }
 
-    draw(image) {
+    draw() {
         super.draw();
         this.context.beginPath();
-        this.setFill(image);
         this.context.arc(this.posX, this.posY, this.radius, 0, 2 * Math.PI);
         this.context.stroke();
         this.context.fill();
@@ -19,7 +18,9 @@ class fichaCircular extends Ficha {
     }
 
     isInside(x, y) {
-        return Math.sqrt((x - this.x) * (x - this.x) + (y - this.y) * (y - this.y)) < this.r;
+        let _x=this.posX - x;
+        let _y=this.posY - y;
+        return Math.sqrt(_x*_x+_y*_y)<this.radius;
     }
     setFill(image) {
         let image1 = new Image(); //iniciar ruta
@@ -28,4 +29,6 @@ class fichaCircular extends Ficha {
             this.context.fillStyle = this.context.createPattern(image1, "repeat"); //imagen como relleno
         }
     }
+
+
 }

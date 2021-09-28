@@ -5,6 +5,7 @@ class Ficha {
         this.fill = fill;
         this.context = context;
     }
+    isInside(x, y){};
 
     setFill(fill) {
         this.fill = fill;
