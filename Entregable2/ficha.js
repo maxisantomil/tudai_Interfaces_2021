@@ -35,4 +35,5 @@ class Ficha {
     draw() {
         this.context.fillStyle = this.fill;
     }
+    isInside(x, y) {};
 }

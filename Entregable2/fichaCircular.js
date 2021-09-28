@@ -18,17 +18,8 @@ class fichaCircular extends Ficha {
     }
 
     isInside(x, y) {
-        let _x=this.posX - x;
-        let _y=this.posY - y;
-        return Math.sqrt(_x*_x+_y*_y)<this.radius;
+        let _x = this.posX - x;
+        let _y = this.posY - y;
+        return Math.sqrt(_x * _x + _y * _y) < this.radius;
     }
-    setFill(image) {
-        let image1 = new Image(); //iniciar ruta
-        image1.src = image; //nuevo objeto imagen
-        image1.onload = () => {
-            this.context.fillStyle = this.context.createPattern(image1, "repeat"); //imagen como relleno
-        }
-    }
-
-
 }
