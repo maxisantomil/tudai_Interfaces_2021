@@ -6,7 +6,10 @@ let lastClickedFicha = null;
 let isMouseDown = false;
 
 let arrFichas = [];
-let tablero = new Tablero(0, 0, ctx, 90, 50);
+let tablero = new Tablero(10,10);
+tablero.agregarCelda();
+tablero.draw(ctx);
+
 for (let i = 0; i < 10; i++) {
     let fichas_j1 = new fichaCircular(50, 50 + i * 50, 'red', ctx);
     arrFichas.push(fichas_j1);

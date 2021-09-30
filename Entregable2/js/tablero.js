@@ -1,23 +1,29 @@
-class Tablero{
-constructor(posX, posY, context, width, height){
-    this.posX=posX;
-    this.posY=posY;
-    this.fill=fill;
-    this.context=context;
-    this.widthT=width;
-    this.heightT=height;
+"use strict";
 
-    let image1 = new Image();
-    image1.src = "img/1.png";
-    
-    image1.onload = function() {
-        myDrawImageMethod(this);
-    }
-    function myDrawImageMethod(image) {
-        ctx.drawImage(image, 150, 150);
-    }
+class Tablero{
+constructor(columnas,filas){
+   this.filas=filas;
+   this.columnas=columnas;
+   //this.ctx=context;
+   this.celdas=[];
+   this.cantCeldas=0; 
 }
 
+agregarCelda(){
+    for(let fila=0;fila<this.filas;fila++){
+        for(let column=0;column<this.columnas;column++){
+            let celda=new Celda(fila,column,ctx);//creación similar a fichaCircular
+            this.celdas.push(celda);
+        }
+    }
+    console.log(this.celdas);
+}
+
+draw(ctx){
+    for(let i=0;i<this.celdas.length;i++){
+        this.celdas[i].drawCelda(ctx);
+    }
+}
 
 
 
