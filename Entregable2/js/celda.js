@@ -7,8 +7,8 @@ class Celda{
         this.heightCelda=50;
         this.fila=fila;
         this.columna=column;
-        this.posX=this.columna*this.widthCelda;
-        this.posY=this.fila*this.heightCelda;
+        this.posX=210+this.columna*this.widthCelda;
+        this.posY=90+this.fila*this.heightCelda;
         //this.ctx=context;
     }
 

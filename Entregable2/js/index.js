@@ -56,6 +56,7 @@ function drawFicha() {
     clearCanvas();
     for (let i = 0; i < arrFichas.length; i++) {
         arrFichas[i].draw();
+        tablero.draw(ctx);
     }
 }
 
