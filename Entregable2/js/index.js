@@ -6,7 +6,7 @@ let lastClickedFicha = null;
 let isMouseDown = false;
 
 let arrFichas = [];
-let tablero = new Tablero(10,10);
+let tablero = new Tablero(6, 6);
 tablero.agregarCelda();
 tablero.draw(ctx);
 
@@ -54,9 +54,10 @@ function clearCanvas() {
 
 function drawFicha() {
     clearCanvas();
+    tablero.draw(ctx);
     for (let i = 0; i < arrFichas.length; i++) {
         arrFichas[i].draw();
-        tablero.draw(ctx);
+
     }
 }
 
