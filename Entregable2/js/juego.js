@@ -1,6 +1,4 @@
-class Juego{
-    constructor(){
-
-    }
+class Juego {
+    constructor() {}
 
 }
