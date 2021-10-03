@@ -3,12 +3,14 @@
 class Celda {
 
     constructor(fila, column, context) {
+        this.posIniX=210;
+        this.posIniY=90;
         this.widthCelda = 50;
         this.heightCelda = 50;
         this.fila = fila;
         this.columna = column;
-        this.posX = 210 + this.columna * this.widthCelda;
-        this.posY = 90 + this.fila * this.heightCelda;
+        this.posX = this.posIniX + this.columna * this.widthCelda;
+        this.posY = this.posIniY + this.fila * this.heightCelda;
         //this.ctx=context;
     }
 
@@ -28,6 +30,16 @@ class Celda {
         ctx.fillStyle = "white";
         ctx.fill();
         ctx.closePath();
+    }
+
+    getPosIniXCelda(){
+        return this.posIniX;
+    }
+    getPosIniY(){
+        return this.posIniY;
+    }
+    getPosFinX(){
+        return this.getPosIniXCelda()+this.widthCelda;
     }
 
 }

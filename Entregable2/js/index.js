@@ -36,6 +36,25 @@ function onMouseDown(e) {
     drawFicha();
 }
 
+function retornarPosicionFicha(e){
+    let ClientRect = this.canvas.getBoundingClientRect();
+    
+     return { 
+       x: Math.round(e.clientX - ClientRect.left),
+       y: Math.round(e.clientY - ClientRect.top)
+     }
+} 
+
+function verificarPosFichaDentroTablero(e){
+    let posX = retornarPosicionFicha(e);
+    console.log(tablero.getPosFinX());
+    
+    if(posX.x>tablero.getPosIniX() && posX.x<tablero.getPosFinX()){
+        return true;
+    }
+    else return false;
+}
+
 function onMouseMove(e) {
     if (isMouseDown && lastClickedFicha != null) {
         lastClickedFicha.setPosition(e.layerX, e.layerY);
@@ -44,6 +63,7 @@ function onMouseMove(e) {
 }
 
 function onMouseUp(e) {
+    verificarPosFichaDentroTablero(e);
     isMouseDown = false;
 }
 

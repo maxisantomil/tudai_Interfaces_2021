@@ -25,6 +25,13 @@ draw(ctx){
     }
 }
 
+getPosIniX(){
+    return this.celdas[0].getPosIniXCelda();
+}
+
+getPosFinX(){
+    return this.celdas[this.celdas.length-1].getPosFinX();
+}
 
 
 }
