@@ -36,23 +36,22 @@ function onMouseDown(e) {
     drawFicha();
 }
 
-function retornarPosicionFicha(e){
+function retornarPosicionFicha(e) {
     let ClientRect = this.canvas.getBoundingClientRect();
-    
-     return { 
-       x: Math.round(e.clientX - ClientRect.left),
-       y: Math.round(e.clientY - ClientRect.top)
-     }
-} 
 
-function verificarPosFichaDentroTablero(e){
-    let posX = retornarPosicionFicha(e);
-    console.log(tablero.getPosFinX());
-    
-    if(posX.x>tablero.getPosIniX() && posX.x<tablero.getPosFinX()){
-        return true;
+    return {
+        x: Math.round(e.clientX - ClientRect.left),
+        y: Math.round(e.clientY - ClientRect.top)
     }
-    else return false;
+}
+
+function verificarPosFichaDentroTablero(e) {
+    let posX = retornarPosicionFicha(e);
+
+    if (posX.x > tablero.getPosIniX() && posX.x < tablero.getPosFinX()) {
+        console.log("esta adentro del tablero");
+        return true;
+    } else return false;
 }
 
 function onMouseMove(e) {
