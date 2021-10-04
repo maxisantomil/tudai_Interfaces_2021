@@ -13,6 +13,22 @@ class fichaCircular extends Ficha {
         this.context.fill();
     }
 
+    /*clearCirculo(){
+        this.context.globalCompositeOperation = 'destination-out';
+        this.context.arc(this.posX, this.posY, this.radius, 0, 2 * Math.PI);
+        this.context.fill();
+    }*/
+    drawCaida() {
+        while(this.posY<=365){
+            clearCanvas();
+            super.draw();
+            this.context.beginPath();
+            this.context.arc(this.posX, this.posY+=1, this.radius, 0, 2 * Math.PI);
+            this.context.stroke();
+            this.context.fill();
+        }
+    }
+
     getRadius() {
         return this.radius;
     }

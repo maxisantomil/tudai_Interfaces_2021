@@ -64,6 +64,8 @@ function onMouseMove(e) {
 
 function onMouseUp(e) {
     verificarPosFichaDentroTablero(e);
+    drawFichaCaida();
+    drawFicha();
     isMouseDown = false;
 }
 
@@ -78,6 +80,14 @@ function drawFicha() {
     for (let i = 0; i < arrFichas.length; i++) {
         arrFichas[i].draw();
 
+    }
+}
+
+
+function drawFichaCaida() {
+    tablero.draw(ctx);
+    for (let i = 0; i < arrFichas.length; i++) {
+        arrFichas[i].drawCaida();
     }
 }
 

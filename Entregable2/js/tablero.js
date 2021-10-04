@@ -30,7 +30,12 @@ getPosIniX(){
 }
 
 getPosFinX(){
-    return this.celdas[this.celdas.length-1].getPosFinX();
+    let comienzoWidth = this.getPosIniX();
+    let ancho=0;
+    for(let i=0;i<this.celdas.length/this.columnas;i++){
+         ancho+=this.celdas[i].getWidthCelda();
+    };
+    return comienzoWidth+ancho;
 }
 
 
