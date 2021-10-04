@@ -30,12 +30,15 @@ class Tablero {
     }
 
     getPosFinX() {
-        let suma = 0;
-        for (let i = 0; i < this.filas; i++) {
-            suma += this.celdas[i].widthCelda;
-        }
-        console.log(suma + this.getPosIniX());
-        return suma + this.getPosIniX();
+        let comienzoWidth = this.getPosIniX();
+        let ancho = 0;
+        for (let i = 0; i < this.celdas.length / this.columnas; i++) {
+            ancho += this.celdas[i].getWidthCelda();
+        };
+        return comienzoWidth + ancho;
+    }
+    getZonaTiro() {
+        return this.celdas[0].getZonaTiroCelda();
     }
 
 

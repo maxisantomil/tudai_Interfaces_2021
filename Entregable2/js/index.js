@@ -46,9 +46,10 @@ function retornarPosicionFicha(e) {
 }
 
 function verificarPosFichaDentroTablero(e) {
-    let posX = retornarPosicionFicha(e);
+    let pos = retornarPosicionFicha(e);
+    let limiteSupTablero = tablero.getZonaTiro() - 20;
 
-    if (posX.x > tablero.getPosIniX() && posX.x < tablero.getPosFinX()) {
+    if (pos.x > tablero.getPosIniX() && pos.x < tablero.getPosFinX() && pos.y < limiteSupTablero) {
         console.log("esta adentro del tablero");
         return true;
     } else return false;
@@ -62,8 +63,16 @@ function onMouseMove(e) {
 }
 
 function onMouseUp(e) {
-    verificarPosFichaDentroTablero(e);
-    isMouseDown = false;
+    if (verificarPosFichaDentroTablero(e)) {
+
+        let clickFicha = findClickFicha(e.layerX, e.layerY);
+        if (clickFicha != null) {
+            lastClickedFicha = clickFicha;
+        }
+        drawFichaCaida(clickFicha);
+        drawFicha();
+        isMouseDown = false;
+    } else alert("debe meter la ficha en el tablero");
 }
 
 function clearCanvas() {
@@ -77,6 +86,14 @@ function drawFicha() {
     for (let i = 0; i < arrFichas.length; i++) {
         arrFichas[i].draw();
 
+    }
+}
+
+
+function drawFichaCaida(ficha) {
+    tablero.draw(ctx);
+    for (let i = 0; i < arrFichas.length; i++) {
+        arrFichas[i].drawCaida(ficha);
     }
 }
 
