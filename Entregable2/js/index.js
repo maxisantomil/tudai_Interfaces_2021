@@ -64,7 +64,11 @@ function onMouseMove(e) {
 
 function onMouseUp(e) {
     verificarPosFichaDentroTablero(e);
-    drawFichaCaida();
+    let clickFicha = findClickFicha(e.layerX, e.layerY);
+    if (clickFicha != null) {
+        lastClickedFicha = clickFicha;
+    }
+    drawFichaCaida(clickFicha);
     drawFicha();
     isMouseDown = false;
 }
@@ -84,10 +88,10 @@ function drawFicha() {
 }
 
 
-function drawFichaCaida() {
+function drawFichaCaida(ficha) {
     tablero.draw(ctx);
     for (let i = 0; i < arrFichas.length; i++) {
-        arrFichas[i].drawCaida();
+        arrFichas[i].drawCaida(ficha);
     }
 }
 
