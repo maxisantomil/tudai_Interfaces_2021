@@ -41,5 +41,8 @@ class Celda {
     getWidthCelda(){
         return this.widthCelda;
     }
+    getZonaTiroCelda(){
+        return this.posIniY;
+    }
 
 }

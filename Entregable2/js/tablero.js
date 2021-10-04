@@ -37,6 +37,9 @@ getPosFinX(){
     };
     return comienzoWidth+ancho;
 }
+getZonaTiro(){
+    return this.celdas[0].getZonaTiroCelda();
+}
 
 
 }
