@@ -38,16 +38,11 @@ class Celda {
     getPosIniY() {
         return this.posIniY;
     }
-<<<<<<< HEAD
-    getPosFinX() {
-        return this.posX + this.widthCelda;
-=======
-    getWidthCelda(){
+    getWidthCelda() {
         return this.widthCelda;
     }
-    getZonaTiroCelda(){
+    getZonaTiroCelda() {
         return this.posIniY;
->>>>>>> 903371ee5965a5c2aee47e3f67424c182982885d
     }
 
 }
