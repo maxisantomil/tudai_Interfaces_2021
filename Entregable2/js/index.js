@@ -33,7 +33,7 @@ function onMouseDown(e) {
     if (clickFicha != null) {
         lastClickedFicha = clickFicha;
     }
-    drawFicha();
+    //drawFicha();
 }
 
 function retornarPosicionFicha(e){
@@ -48,6 +48,7 @@ function retornarPosicionFicha(e){
 function verificarPosFichaDentroTablero(e){
     let pos = retornarPosicionFicha(e);
     let limiteSupTablero = tablero.getZonaTiro()-20;
+    
     
     if(pos.x>tablero.getPosIniX() && pos.x<tablero.getPosFinX()&&pos.y<limiteSupTablero){
         return true;
@@ -64,16 +65,17 @@ function onMouseMove(e) {
 
 function onMouseUp(e) {
     if(verificarPosFichaDentroTablero(e)){
-    
     let clickFicha = findClickFicha(e.layerX, e.layerY);
     if (clickFicha != null) {
         lastClickedFicha = clickFicha;
     }
-    drawFichaCaida(clickFicha);
-    drawFicha();
+    let posXCeldaCentral=tablero.buscarUbicacionCelda(clickFicha);
+    console.log(posXCeldaCentral);
+    if(posXCeldaCentral!=null){
+    drawFichaCaida(clickFicha,posXCeldaCentral,tablero);
     isMouseDown = false;
+    }
 }
-else alert("debe meter la ficha en el tablero");
 }
 
 function clearCanvas() {
@@ -86,16 +88,16 @@ function drawFicha() {
     tablero.draw(ctx);
     for (let i = 0; i < arrFichas.length; i++) {
         arrFichas[i].draw();
-
     }
 }
 
 
-function drawFichaCaida(ficha) {
+function drawFichaCaida(ficha,pos,tab) {
+    clearCanvas();
     tablero.draw(ctx);
-    for (let i = 0; i < arrFichas.length; i++) {
-        arrFichas[i].drawCaida(ficha);
-    }
+    //for (let i = 0; i < arrFichas.length; i++) {
+       /* arrFichas[i].*/ficha.drawCaida(ficha,pos,tab);
+    //    }
 }
 
 function findClickFicha(x, y) {
