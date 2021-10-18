@@ -27,7 +27,7 @@ class Ficha {
         return this.posX;
     }
     getPosY() {
-        return this.getPosY;
+        return this.posY;
     }
     getFill() {
         return this.fill;
