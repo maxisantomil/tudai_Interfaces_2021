@@ -33,7 +33,6 @@ function onMouseDown(e) {
     if (clickFicha != null) {
         lastClickedFicha = clickFicha;
     }
-    //drawFicha();
 }
 
 function retornarPosicionFicha(e) {
@@ -82,6 +81,11 @@ function clearCanvas() {
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 }
 
+function clearCanvasTablero() {
+    ctx.fillStyle = '#F8F8FF';
+    ctx.fillRect(210, 0, 200, 100);
+}
+
 function drawFicha() {
     clearCanvas();
     tablero.draw(ctx);
@@ -92,7 +96,7 @@ function drawFicha() {
 
 
 function drawFichaCaida(ficha, pos, tab) {
-    clearCanvas();
+    clearCanvasTablero();
     tablero.draw(ctx);
     //for (let i = 0; i < arrFichas.length; i++) {
     /* arrFichas[i].*/
