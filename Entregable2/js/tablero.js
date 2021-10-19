@@ -25,6 +25,16 @@ class Tablero {
         }
     }
 
+    buscarUbicacionCelda(ficha) {
+        let ubicacion = 0;
+        for (let i = 0; i < this.celdas.length / this.columnas; i++) {
+            if (this.celdas[i].getPosIniXCelda() <= ficha.getPosX() && this.celdas[i].getFinPosX() > ficha.getPosX()) {
+                return this.celdas[i].getUbicacionMediaCelda();
+            } else ubicacion = null;
+        }
+        return ubicacion;
+    }
+
     getPosIniX() {
         return this.celdas[0].getPosIniXCelda();
     }

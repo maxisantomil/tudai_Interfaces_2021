@@ -9,8 +9,8 @@ class Celda {
         this.heightCelda = 50;
         this.fila = fila;
         this.columna = column;
-        this.posX = this.posIniX + this.columna * this.widthCelda;
-        this.posY = this.posIniY + this.fila * this.heightCelda;
+        this.posX = this.posIniX + (this.columna * this.widthCelda);
+        this.posY = this.posIniY + (this.fila * this.heightCelda);
         //this.ctx=context;
     }
 
@@ -38,16 +38,20 @@ class Celda {
     getPosIniY() {
         return this.posIniY;
     }
-<<<<<<< HEAD
-    getPosFinX() {
+    getPosX() {
+        return this.posX;
+    }
+    getFinPosX() {
         return this.posX + this.widthCelda;
-=======
-    getWidthCelda(){
+    }
+    getWidthCelda() {
         return this.widthCelda;
     }
-    getZonaTiroCelda(){
+    getZonaTiroCelda() {
         return this.posIniY;
->>>>>>> 903371ee5965a5c2aee47e3f67424c182982885d
+    }
+    getUbicacionMediaCelda() {
+        return this.posX + (this.widthCelda / 2);
     }
 
 }
